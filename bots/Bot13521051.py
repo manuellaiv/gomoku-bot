@@ -83,9 +83,9 @@ class Bot13521051(object):
                 loc = board.location_to_move([i,j])
                 val_opp = self.list_val(self.consecutive_opponent(i,j,board))
                 val_self = self.list_val(self.consecutive_self(i,j,board))
-                if ((board.states.get(loc) is None) and 1.7*val_opp+val_self > val):
+                if ((board.states.get(loc) is None) and 1.5*val_opp+val_self > val):
                     chosen = [i,j]
-                    val = 1.7*val_opp+val_self
+                    val = 1.5*val_opp+val_self
         return chosen
 
     def list_val(self, l:list[list[list[int]]]) -> int:
