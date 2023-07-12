@@ -81,27 +81,17 @@ class Bot13521051(object):
         for i in range(board.height):
             for j in range(board.width):
                 loc = board.location_to_move([i,j])
-                # print(i,j,self.consecutive_opponent(i,j,board),self.consecutive_self(i,j,board))
                 val_opp = self.list_val(self.consecutive_opponent(i,j,board))
-                val_self = self.list_val_self(self.consecutive_self(i,j,board))
-                if ((board.states.get(loc) is None) and 1.5*val_opp+val_self > val):
+                val_self = self.list_val(self.consecutive_self(i,j,board))
+                if ((board.states.get(loc) is None) and 1.7*val_opp+val_self > val):
                     chosen = [i,j]
-                    val = 1.5*val_opp+val_self
+                    val = 1.7*val_opp+val_self
         return chosen
 
     def list_val(self, l:list[list[list[int]]]) -> int:
         val = 0
         for i in range(len(l)):
             val = val + len(l[i])*len(l[i])
-        return val
-    
-    def list_val_self(self, l:list[list[list[int]]]) -> int:
-        val = 0
-        for i in range(len(l)):
-            if len(l[i]) == 4:
-                val = val + 999999
-            else:
-                val = val + len(l[i])*len(l[i])
         return val
 
     def consecutive_self(self, i:int, j: int, board: Board) -> list[list[int]]:
